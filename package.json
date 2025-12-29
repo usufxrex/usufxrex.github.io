@@ -1,0 +1,8 @@
+{
+  "name": "yousuf-rayhan-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Yousuf Rayhan Emon",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
