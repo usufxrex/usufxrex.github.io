@@ -1,0 +1,134 @@
+===============================================
+RESEARCH IMPACT AUTO-UPDATE SYSTEM
+===============================================
+
+✅ FEATURES IMPLEMENTED:
+
+1. HOME PAGE - Research Impact Box
+   - Auto-updates Publications count from Google Scholar
+   - Auto-updates Citations count from Google Scholar
+   - Auto-calculates Years of Experience
+
+2. RESEARCH PAGE (MERGED)
+   - Total Citations (auto-updated)
+   - h-index (auto-updated)
+   - i10-index (auto-updated)
+   - Total Publications (Scopus count - manual)
+   - Citation Trends Chart (auto-updated)
+   - Q1-Q4 Journal Rankings (manual)
+   
+3. PUBLICATIONS LIST (AUTO-CATEGORIZED)
+   - Journal Publications (auto-fetched from API)
+   - Conference Papers (auto-fetched from API)
+   - Preprints & Other (auto-fetched from API)
+   - Book Chapters (manual - not in Google Scholar)
+
+===============================================
+EXPERIENCE CALCULATION
+===============================================
+
+Start Date: January 1, 2023
+Display Format: X.Y (Years.Months)
+
+Examples:
+- Jan 31, 2026 → 3.1 (3 years, 1 month)
+- Feb 28, 2026 → 3.2 (3 years, 2 months)
+- Dec 31, 2026 → 3.12 (3 years, 12 months → becomes 4.0)
+
+The experience updates automatically every time the page loads!
+
+===============================================
+DATA UPDATE SCHEDULE
+===============================================
+
+- Data is fetched from Google Scholar via SerpApi
+- Uses smart caching: Updates every 7 days
+- API Usage: ~4 calls per month (within free tier of 100/month)
+- Cache stored in browser's localStorage
+
+===============================================
+HOW TO MANUALLY REFRESH DATA
+===============================================
+
+Option 1: Wait 7 days for automatic refresh
+Option 2: Clear cache manually
+   - Press F12 (open browser console)
+   - Type: localStorage.removeItem('scholar_data_cache');
+   - Press Enter
+   - Refresh the page
+
+===============================================
+YOUR API KEY (Keep Safe!)
+===============================================
+
+SerpApi Key: 28cb72fc4d7a086f585f3ce452de36a8d163e51a1fae41be4fd1158794974cd1
+Google Scholar ID: 16_BMKUAAAAJ
+Free Tier: 100 searches/month
+
+===============================================
+TO CHANGE CAREER START DATE
+===============================================
+
+1. Open index.html
+2. Find: const CAREER_START_DATE = new Date('2023-01-01');
+3. Change the date to your actual start date
+4. Save and refresh
+
+===============================================
+TROUBLESHOOTING
+===============================================
+
+If data shows "-" or "0":
+1. Check internet connection
+2. Clear cache (see above)
+3. Check browser console (F12) for errors
+4. Verify API key is valid at serpapi.com
+
+If experience calculation is wrong:
+1. Verify CAREER_START_DATE in code
+2. Check your computer's date/time settings
+
+===============================================
+UPDATING Q1-Q4 JOURNAL RANKINGS
+===============================================
+
+⚠️ These counts are MANUAL - not auto-updated!
+
+Rules for counting:
+✅ Count: Scopus-indexed journals
+✅ Count: Scopus-indexed conference proceedings
+❌ Don't count: arXiv preprints
+❌ Don't count: Non-indexed preprints
+❌ Don't count: Book chapters (unless Scopus-indexed)
+
+Current Settings (as of Dec 2025):
+- Q1: 1 (Computers and Education: AI)
+- Q2: 0
+- Q3: 3 (Data in Brief journals)
+- Q4: 0
+
+To update these numbers:
+1. Open index.html
+2. Search for: <div class="ranking-value" id="q1-count">
+3. Change the numbers in the respective divs
+4. Save and refresh
+
+UPDATING SCOPUS PUBLICATIONS COUNT
+-----------------------------------
+Google Scholar shows ALL publications (20) including arXiv/preprints.
+Your site shows only SCOPUS-INDEXED count (9).
+
+Current: 9 (3 Q1 + 3 Q3 + 3 Q4)
+
+To update when you publish new Scopus papers:
+1. Open index.html
+2. Search for: const SCOPUS_PUBLICATIONS = 9;
+3. Change the number to your new count
+4. Save and refresh
+
+To find journal quartiles:
+- Visit: https://www.scimagojr.com/
+- Search for your journal name
+- Check the "SJR Quartile" column
+
+===============================================

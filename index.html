@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yousuf Rayhan Emon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 6rem 0;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ffd700;
+        }
+
+        /* Homepage Styles */
+        .home-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .home-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .home-hero p {
+            font-size: 1.2rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* First Row - Main Cards */
+        .home-main-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .main-card {
+            background: rgba(45, 45, 45, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+        }
+
+        /* Profile Card */
+        .profile-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid #ffd700;
+        }
+
+        .profile-card h3 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .keyword-tag {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        /* Latest Updates Card */
+        .updates-card h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .updates-container {
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .updates-container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .updates-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .updates-container::-webkit-scrollbar-thumb {
+            background: #ffd700;
+            border-radius: 4px;
+        }
+
+        .update-item {
+            background: rgba(26, 26, 26, 0.6);
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border-left: 3px solid #4dabf7;
+            text-align: left;
+        }
+
+        .update-item h4 {
+            font-size: 0.9rem;
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+        }
+
+        .update-item span {
+            font-size: 0.7rem;
+            color: #ffd700;
+        }
+
+        /* Research Stats Card */
+        .stats-card h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .stat-item {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4dabf7;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+
+        /* Second Row - Navigation Cards */
+        .home-nav-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .nav-card {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+        }
+
+        .nav-card i {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .nav-card h3 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .nav-card p {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-image-section {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            position: sticky;
+            top: 100px;
+        }
+
+        .about-image-section img {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 3px solid #ffd700;
+        }
+
+        .about-content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            border-left: 4px solid #ffd700;
+        }
+
+        .about-card h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .about-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .about-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            color: #4dabf7;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Research Section */
+        .research-section {
+            margin-bottom: 3rem;
+        }
+
+        .research-section h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 0.5rem;
+        }
+
+        .research-item {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #4dabf7;
+        }
+
+        .research-item h4 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-item p {
+            color: #cccccc;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .research-links a {
+            color: #4dabf7;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Research Impact Section */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, rgba(77, 171, 247, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid rgba(77, 171, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .impact-card i {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .impact-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4dabf7;
+            margin: 0.5rem 0;
+        }
+
+        .impact-label {
+            font-size: 1.1rem;
+            color: #cccccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-container {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 2px solid rgba(77, 171, 247, 0.3);
+        }
+
+        .chart-container h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .journal-rankings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .ranking-card {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border-left: 4px solid #4dabf7;
+        }
+
+        .ranking-card.q1 { border-left-color: #51cf66; }
+        .ranking-card.q2 { border-left-color: #ffd700; }
+        .ranking-card.q3 { border-left-color: #ff922b; }
+        .ranking-card.q4 { border-left-color: #ff6b6b; }
+
+        .ranking-label {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 0.5rem;
+        }
+
+        .ranking-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .update-info {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            color: #ffd700;
+            font-size: 1.2rem;
+            padding: 2rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(26, 26, 26, 0.8);
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        .social-links {
+            background: rgba(45, 45, 45, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .social-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .social-item:hover {
+            transform: scale(1.05);
+        }
+
+        .social-item a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+        }
+
+        .social-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .home-hero h1 {
+                font-size: 2rem;
+            }
+
+            .home-main-row {
+                grid-template-columns: 1fr;
+            }
+
+            .main-card {
+                height: auto;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image-section {
+                position: static;
+            }
+        }
+
+        /* Hidden sections for SPA behavior */
+        .section.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Yousuf Rayhan Emon</div>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="showSection('home')">Home</a></li>
+                <li><a href="#about" onclick="showSection('about')">About</a></li>
+                <li><a href="#projects" onclick="showSection('projects')">Projects</a></li>
+                <li><a href="#research" onclick="showSection('research')">Research</a></li>
+                <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="container">
+            <div class="home-hero">
+                <h2 style="font-size: 1.8rem; color: #ffd700; margin-bottom: 1rem; font-weight: 600;">AI/ML Researcher | Teacher | Python Programmer</h2>
+            </div>
+
+            <!-- First Row - Main Cards -->
+            <div class="home-main-row">
+                <!-- Profile Card -->
+                <div class="main-card profile-card">
+                    <div>
+                        <img src="images/profile.jpg" alt="Yousuf Rayhan Emon">
+                        <h3>Yousuf Rayhan Emon</h3>
+                        <div class="keywords">
+                            <span class="keyword-tag">AI Researcher</span>
+                            <span class="keyword-tag">Deep Learning</span>
+                            <span class="keyword-tag">Computer Vision</span>
+                            <span class="keyword-tag">XAI</span>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="showSection('about')">Learn More</button>
+                </div>
+
+                <!-- Latest Updates -->
+                <div class="main-card updates-card">
+                    <h3><i class="fas fa-newspaper"></i> Latest Updates</h3>
+                    <div class="updates-container">
+                        <div class="update-item">
+                            <h4>Research Award from DIU 2025</h4>
+                            <span>May 2025</span>
+                        </div>
+                        <div class="update-item">
+                            <h4>Research Paper - Domain-aware Learning</h4>
+                            <span>In Progress</span>
+                        </div>
+                        <div class="update-item">
+                            <h4>Project - Conditional GAN based Feature Fusion for Medical AI</h4>
+                            <span>March 2025</span>
+                        </div>
+                        <div class="update-item">
+                            <h4>Q1 Journal Published - Educational with XAI</h4>
+                            <span>Dec 2024</span>
+                        </div>
+                        <div class="update-item">
+                            <h4>Vision Transformer based Agricultural Disease Detection</h4>
+                            <span>Aug 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Stats -->
+                <div class="main-card stats-card">
+                    <h3><i class="fas fa-chart-line"></i> Research Impact</h3>
+                    <div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="home-experience">3</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="home-publications">-</span>
+                            <span class="stat-label">Publications</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="home-citations">-</span>
+                            <span class="stat-label">Citations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row - Navigation Cards -->
+            <div class="home-nav-row">
+                <div class="nav-card" onclick="showSection('projects')">
+                    <i class="fas fa-code"></i>
+                    <h3>Projects</h3>
+                    <p>Explore my latest work</p>
+                </div>
+
+                <div class="nav-card" onclick="showSection('research')">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Research</h3>
+                    <p>Publications & papers</p>
+                </div>
+
+                <div class="nav-card" onclick="showSection('contact')">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Contact</h3>
+                    <p>Let's collaborate</p>
+                </div>
+
+                <div class="nav-card" onclick="window.open('documents/CV_Yousuf_Rayhan_Emon.pdf', '_blank')">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Download CV</h3>
+                    <p>View full CV</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section hidden">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-container">
+                <!-- Left Side - Image and Brief Info -->
+                <div class="about-image-section">
+                    <img src="images/about-photo.jpg" alt="Yousuf Rayhan Emon">
+                    <h3 style="color: #ffd700; margin-bottom: 1rem;">Yousuf Rayhan Emon</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">AI/ML Researcher | MSc Data Science | Graduate Research Assistant</p>
+                    <div class="keywords">
+                        <span class="keyword-tag">Research</span>
+                        <span class="keyword-tag">AI/ML</span>
+                        <span class="keyword-tag">XAI</span>
+                    </div>
+                </div>
+
+                <!-- Right Side - Detailed Information -->
+                <div class="about-content">
+                    <!-- Bio Card -->
+                    <div class="about-card">
+                        <h3><i class="fas fa-user"></i> Biography</h3>
+                        <p>I am currently pursuing an MSc in Data Science and working as a researcher focused on image-based AI and machine learning. My main research areas include developing lightweight deep learning models for medical imaging and agricultural analysis, using techniques like feature fusion, attention mechanisms, and domain-aware learning. I am also involved in educational data research, especially using structured (CSV/tabular) data to build predictive systems. In all sectors I work in, I apply Explainable AI (XAI) methods to improve transparency and trust in model outcomes. My work has been published in international journals and conferences, and I actively contribute to open-source datasets and real-world AI projects.</p>
+                    </div>
+
+                    <!-- Education Card -->
+                    <div class="about-card">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <ul>
+                            <li><strong>MSc in Computer Science & Engineering (Data Science)</strong> - Daffodil International University (2024-Cont.) - CGPA: 3.94/4.00</li>
+                            <li><strong>Bachelor's in Computer Science & Engineering</strong> - Daffodil International University (2020-2023) - CGPA: 3.87/4.00</li>
+                            <li><strong>Higher Secondary Certificate (Science)</strong> - Bangladesh Noubahini School and College, Khulna (2016-2017) - GPA: 4.75/5.00</li>
+                        </ul>
+                    </div>
+
+                    <!-- Experience Card -->
+                    <div class="about-card">
+                        <h3><i class="fas fa-briefcase"></i> Experience</h3>
+                        <ul>
+                            <li><strong>Graduate Research Assistant</strong> - 4IR Research Cell, Daffodil International University (2024 - Present)</li>
+                            <li><strong>Teaching Assistant</strong> - Department of CSE, Daffodil International University (2023 - 2024)</li>
+                            <li><strong>Instructor (Blockchain Development)</strong> - Cyber Security Club, DIU (2023)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Skills Card -->
+                    <div class="about-card">
+                        <h3><i class="fas fa-cogs"></i> Research & Technical Interests</h3>
+                        <ul>
+                            <li><strong>Core Areas:</strong> Image-based AI, Lightweight Deep Learning, Medical Imaging, Agricultural Analysis</li>
+                            <li><strong>Techniques:</strong> Feature Fusion, Attention Mechanisms, Domain-aware Learning, Vision Transformers (ViT)</li>
+                            <li><strong>Specialized:</strong> Explainable AI (XAI), Hybrid CNN-ViT Models, Predictive Modeling</li>
+                            <li><strong>Applications:</strong> Healthcare AI, Smart Farming, Educational Data Analytics, Blockchain Development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section hidden">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            
+            <!-- GitHub Projects -->
+            <div class="research-section">
+                <h3><i class="fab fa-github"></i> GitHub Repositories</h3>
+                <div id="github-projects-loading" class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i> Loading GitHub repositories...
+                </div>
+                <div id="github-projects" class="project-grid" style="display: none;"></div>
+            </div>
+
+            <!-- Featured/Manual Projects -->
+            <div class="research-section" style="margin-top: 3rem;">
+                <h3><i class="fas fa-star"></i> Featured Projects</h3>
+                <div class="project-grid">
+
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-user-shield" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">DeRefIdm: Decentralized Refugee Management</h3>
+                        <p>A blockchain-based system for refugee identification and management using smart contracts. Ensures secure, transparent, and decentralized identity verification.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/usufxrex/Refugee_Identity_Using_Smart_Contract" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-graduation-cap" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI-Powered Student Dropout Prediction</h3>
+                        <p>Machine learning model with explainable AI insights for early detection of student dropout risks. Published in high-impact journal (Citescore 17).</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('It is a collaboration work with Sumaya Mustofa. Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/SumayaMustofa20/Student-Dropout-prediction-hybrid-model" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-seedling" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Smart Agricultural Disease Detection</h3>
+                        <p>Vision Transformer models for accurate leaf disease detection in various crops including grape, java plum, and sweet orange with custom datasets.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/usufxrex/grape_leaf-disease_ViT" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shield-alt" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Smart Contract Applications</h3>
+                        <p>Various blockchain projects including vaccine distribution, insurance management, and secure marriage records using smart contracts.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="#" onclick="alert('Project links coming soon!')"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-file-code" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Road Damage Detection Using YOLOv10</h3>
+                        <p>This project utilizes YOLOv10s to detect and localize potholes, cracks, and other road anomalies with high speed and accuracy, making it suitable for smart city infrastructure monitoring.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/usufxrex/road_damage_YOLOv10" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-palette" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">DigitalSignatureWithQRFrontEnd</h3>
+                        <p>A React + TypeScript frontend built with Vite, designed for generating and displaying digital signatures embedded within QR codes. This project focuses on a lightweight, modular interface for secure document validation and identity verification workflows. Developed collaboratively with Anupam Abir Kolin, it includes ESLint integration and supports scalable, production-ready code architecture.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/kolinabir/DigitalSignatureWithQRFrontEnd" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-lock" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">SecureMedical_DIU</h3>
+                        <p>A blockchain-based prototype developed using Hardhat to explore secure medical data handling and smart contract deployment. Built in collaboration with Anupam Abir Kolin, the project demonstrates the integration of Ethereum smart contracts for secure, decentralized medical record management. Includes sample contracts, deployment scripts, and basic tests to simulate real-world healthcare use cases.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/kolinabir/SecureMedical_DIU" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-link" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">MarriageApp-0.02</h3>
+                        <p>A decentralized application (dApp) prototype developed using Hardhat to explore blockchain-based marriage registration and validation systems. Created in collaboration with Anupam Abir Kolin, the project features smart contract deployment and testing to simulate secure, tamper-proof documentation of marriage records on the Ethereum blockchain.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/kolinabir/MarriageApp-0.02" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-database" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Digital-Signature-Backend</h3>
+                        <p>A backend service built to handle digital signature generation and verification processes, designed to complement the frontend QR-based signature system. Developed in collaboration with Anupam Abir Kolin, this project leverages modern cryptographic techniques and API endpoints to ensure secure document authentication in a digital ecosystem.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/kolinabir/Digital-Signature-Backend" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-robot" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Demo_AI_Assistant_DIU</h3>
+                        <p>An AI-powered assistant prototype developed to showcase the integration of natural language processing in educational environments. Built for Daffodil International University (DIU), the project demonstrates how conversational AI can assist students and faculty with queries, academic support, and task automation. Features basic interaction capabilities and serves as a foundation for more advanced virtual assistant development.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/usufxrex/Demo_AI_Assistant_DIU" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 11 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-laptop-code" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Similarity Text Checker with Plotly</h3>
+                        <p>A web-based application that analyzes and visualizes text similarity using natural language processing techniques. This tool allows users to compare textual inputs and view similarity scores through interactive Plotly visualizations. Designed for educational and research purposes, it helps identify textual overlap, paraphrasing, or potential plagiarism with clear graphical feedback.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/usufxrex/silimarity_text_checker_plotly" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 12 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-file-code" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">64_Complex_CNN_Batch_32_Simple_ViT</h3>
+                        <p>An experimental deep learning project comparing the performance of a complex CNN architecture with a lightweight Vision Transformer (ViT) on image classification tasks. The models are trained with a batch size of 32, focusing on evaluating efficiency, accuracy, and training behavior. This project serves as a comparative study to explore the trade-offs between traditional convolutional networks and emerging transformer-based vision models.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/usufxrex/64_Complex_CNN_Batch_32_Simple_ViT" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 13 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-heartbeat" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">SecureMedical_DIU</h3>
+                        <p>A deep learning project leveraging a Vision Transformer (ViT) for the classification of leukemia from microscopic blood smear images. This model aims to support early and accurate leukemia diagnosis by capturing complex visual patterns in medical imagery. The project showcases the effectiveness of transformer-based architectures in medical image analysis, with potential applications in automated diagnostics and clinical decision support.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/usufxrex/Leukemia_ViT" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 14 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-code" style="font-size: 2rem;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Deep_Hybrid_CNN_ViT</h3>
+                        <p>A hybrid deep learning architecture combining Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs) to enhance image classification performance. This project explores the synergistic strengths of CNNs for local feature extraction and ViTs for global context modeling, aiming to deliver robust and accurate visual recognition across complex datasets.</p>
+                        <div class="project-links">
+                            <a href="#" onclick="alert('Project details coming soon!')"><i class="fas fa-info-circle"></i> Details</a>
+                            <a href="https://github.com/usufxrex/Both_Complex_Hybrid_CNN_VIT" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section (Merged with Impact) -->
+    <section id="research" class="section hidden">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> Research & Publications</h2>
+            
+            <!-- Loading State -->
+            <div id="impact-loading" class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i> Loading research metrics...
+            </div>
+
+            <!-- Research Impact Metrics -->
+            <div id="impact-content" style="display: none;">
+                <!-- Metrics Grid -->
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <i class="fas fa-quote-right"></i>
+                        <div class="impact-value" id="total-citations">-</div>
+                        <div class="impact-label">Total Citations</div>
+                    </div>
+                    <div class="impact-card">
+                        <i class="fas fa-h-square"></i>
+                        <div class="impact-value" id="h-index">-</div>
+                        <div class="impact-label">h-index</div>
+                    </div>
+                    <div class="impact-card">
+                        <i class="fas fa-i-cursor"></i>
+                        <div class="impact-value" id="i10-index">-</div>
+                        <div class="impact-label">i10-index</div>
+                    </div>
+                    <div class="impact-card">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="impact-value" id="total-publications">-</div>
+                        <div class="impact-label">Publications</div>
+                    </div>
+                </div>
+
+                <!-- Citation Trends Chart -->
+                <div class="chart-container">
+                    <h3><i class="fas fa-chart-area"></i> Citation Trends Over Time</h3>
+                    <canvas id="citationChart"></canvas>
+                </div>
+
+                <!-- Journal Rankings - Scopus Indexed Only -->
+                <div class="research-section">
+                    <h3><i class="fas fa-star"></i> Journal Rankings Distribution</h3>
+                    <p style="color: #888; margin-bottom: 1.5rem; text-align: center; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> Scopus-indexed Journals & Conferences only (excludes arXiv, preprints)
+                    </p>
+                    <div class="journal-rankings">
+                        <div class="ranking-card q1">
+                            <div class="ranking-label">Q1 Quartile</div>
+                            <div class="ranking-value" id="q1-count">3</div>
+                        </div>
+                        <div class="ranking-card q2">
+                            <div class="ranking-label">Q2 Quartile</div>
+                            <div class="ranking-value" id="q2-count">0</div>
+                        </div>
+                        <div class="ranking-card q3">
+                            <div class="ranking-label">Q3 Quartile</div>
+                            <div class="ranking-value" id="q3-count">3</div>
+                        </div>
+                        <div class="ranking-card q4">
+                            <div class="ranking-label">Q4 Quartile</div>
+                            <div class="ranking-value" id="q4-count">3</div>
+                        </div>
+                    </div>
+                    <p style="color: #666; margin-top: 1.5rem; text-align: center; font-size: 0.85rem; font-style: italic;">
+                        Based on Scimago Journal Rank (SJR). Conference proceedings counted if Scopus-indexed.
+                    </p>
+                </div>
+
+                <div class="update-info" style="margin-bottom: 3rem;">
+                    <i class="fas fa-sync-alt"></i> Last updated: <span id="last-update">-</span>
+                </div>
+            </div>
+
+            <!-- Publications List -->
+            <div id="publications-list">
+                <!-- Journal Papers -->
+                <div class="research-section">
+                    <h3><i class="fas fa-book"></i> Journal Publications</h3>
+                    <div id="journal-publications">
+                        <div class="loading-spinner" style="padding: 1rem;">
+                            <i class="fas fa-spinner fa-spin"></i> Loading journals...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conference Papers -->
+                <div class="research-section">
+                    <h3><i class="fas fa-users"></i> Conference Papers</h3>
+                    <div id="conference-publications">
+                        <div class="loading-spinner" style="padding: 1rem;">
+                            <i class="fas fa-spinner fa-spin"></i> Loading conferences...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preprints -->
+                <div class="research-section">
+                    <h3><i class="fas fa-file-alt"></i> Preprints & Other Publications</h3>
+                    <div id="preprint-publications">
+                        <div class="loading-spinner" style="padding: 1rem;">
+                            <i class="fas fa-spinner fa-spin"></i> Loading preprints...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Chapters (Manual) -->
+                <div class="research-section">
+                    <h3><i class="fas fa-book-open"></i> Book Chapters</h3>
+                    <div class="research-item">
+                        <h4>Blockchain Research Framework: A Comprehensive Investigation (Chapter 2)</h4>
+                        <p><strong>Book:</strong> Practical and Research Applications of Blockchain in Digital Security</p>
+                        <p><strong>Publisher:</strong> Muktodhara Prokashoni – DIU Press, 2024</p>
+                    </div>
+                    <div class="research-item">
+                        <h4>Applications of Blockchain in Refugee Identification and Management (Chapter 10)</h4>
+                        <p><strong>Book:</strong> Practical and Research Applications of Blockchain in Digital Security</p>
+                        <p><strong>Publisher:</strong> Muktodhara Prokashoni – DIU Press, 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section hidden">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3><i class="fas fa-envelope"></i> Send Me a Message</h3>
+                    <form action="mailto:emonyousuf.bd@gmail.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <h3><i class="fas fa-share-alt"></i> Connect with Me</h3>
+                    <div class="social-grid">
+                        <div class="social-item">
+                            <a href="https://www.linkedin.com/in/usuf-rayhan-emon/" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                        <div class="social-item">
+                            <a href="https://github.com/usufxrex" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                        <div class="social-item">
+                            <a href="https://scholar.google.com/citations?user=16_BMKUAAAAJ&hl=en&authuser=7" target="_blank">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Scholar</span>
+                            </a>
+                        </div>
+                        <div class="social-item">
+                            <a href="https://www.facebook.com/yousufrayhanemon" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </div>
+                        <div class="social-item">
+                            <a href="https://t.me/+8801708936687" target="_blank">
+                                <i class="fab fa-telegram"></i>
+                                <span>Telegram</span>
+                            </a>
+                        </div>
+                        <div class="social-item">
+                            <a href="https://wa.me/8801708936687" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Yousuf Rayhan Emon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Simple SPA navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update URL hash
+            window.location.hash = sectionId;
+        }
+
+        // Handle initial page load
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add some interactivity to the homepage cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.main-card, .nav-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Research Impact - Google Scholar Data Fetching
+        const SERPAPI_KEY = '28cb72fc4d7a086f585f3ce452de36a8d163e51a1fae41be4fd1158794974cd1';
+        const AUTHOR_ID = '16_BMKUAAAAJ';
+        const CACHE_KEY = 'scholar_data_cache';
+        const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+        
+        // Experience calculation - Started January 2023
+        const CAREER_START_DATE = new Date('2023-01-01');
+        
+        // Scopus-indexed publications count (manual - update when you publish)
+        // Only count: Scopus journals + Scopus conferences
+        // Don't count: arXiv, preprints, book chapters (unless Scopus-indexed)
+        const SCOPUS_PUBLICATIONS = 9; // 3 Q1 + 3 Q3 + 3 Q4 conferences
+
+        let citationChart = null;
+
+        // Calculate and update experience
+        function updateExperience() {
+            const now = new Date();
+            const diffTime = Math.abs(now - CAREER_START_DATE);
+            const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25);
+            
+            const years = Math.floor(diffYears);
+            const months = Math.floor((diffYears - years) * 12);
+            
+            let experienceText;
+            if (months === 0) {
+                experienceText = `${years}`;
+            } else {
+                experienceText = `${years}.${months}`;
+            }
+            
+            // Update home page
+            const homeExp = document.getElementById('home-experience');
+            if (homeExp) {
+                homeExp.textContent = experienceText;
+            }
+        }
+
+        async function fetchScholarData() {
+            try {
+                // Check cache first
+                const cached = localStorage.getItem(CACHE_KEY);
+                if (cached) {
+                    try {
+                        const { data, timestamp } = JSON.parse(cached);
+                        const age = Date.now() - timestamp;
+                        
+                        if (age < CACHE_DURATION) {
+                            console.log('Using cached data (age: ' + Math.floor(age / (1000 * 60 * 60 * 24)) + ' days)');
+                            displayScholarData(data);
+                            return;
+                        }
+                    } catch (cacheError) {
+                        console.warn('Cache error, fetching fresh data:', cacheError);
+                        localStorage.removeItem(CACHE_KEY);
+                    }
+                }
+
+                // Fetch fresh data using CORS proxy
+                console.log('Fetching fresh data from Google Scholar...');
+                const apiUrl = `https://serpapi.com/search.json?engine=google_scholar_author&author_id=${AUTHOR_ID}&api_key=${SERPAPI_KEY}`;
+                const response = await fetch(
+                    `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`
+                );
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data from SerpApi');
+                }
+
+                const data = await response.json();
+                
+                // Cache the data
+                localStorage.setItem(CACHE_KEY, JSON.stringify({
+                    data: data,
+                    timestamp: Date.now()
+                }));
+
+                displayScholarData(data);
+            } catch (error) {
+                console.error('Error fetching scholar data:', error);
+                document.getElementById('impact-loading').innerHTML = 
+                    '<i class="fas fa-exclamation-triangle"></i> Unable to load data. Please check your API key or try again later.';
+            }
+        }
+
+        function displayScholarData(data) {
+            console.log('Received data:', data);
+            console.log('Cited by table:', data.cited_by?.table);
+            
+            // Validate data structure
+            if (!data || !data.cited_by || !data.cited_by.table) {
+                console.error('Invalid data structure:', data);
+                throw new Error('Invalid data structure received from API');
+            }
+            
+            const citedBy = data.cited_by;
+            const articles = data.articles || [];
+            
+            // Log each table entry to see the structure
+            citedBy.table.forEach((entry, index) => {
+                console.log(`Table entry ${index}:`, entry);
+            });
+            
+            // Update metrics with safe access - try multiple possible key formats
+            const totalCitations = citedBy.table[0]?.citations?.all || 
+                                   citedBy.table[0]?.Citations?.all || 0;
+            const hIndex = citedBy.table[1]?.indice_h?.all || 
+                          citedBy.table[1]?.h_index?.all ||
+                          citedBy.table[1]?.['h-index']?.all || 0;
+            const i10Index = citedBy.table[2]?.indice_i10?.all || 
+                            citedBy.table[2]?.i10_index?.all ||
+                            citedBy.table[2]?.['i10-index']?.all || 0;
+            
+            console.log('Parsed values:', { totalCitations, hIndex, i10Index });
+            
+            document.getElementById('total-citations').textContent = 
+                totalCitations.toLocaleString();
+            document.getElementById('h-index').textContent = hIndex;
+            document.getElementById('i10-index').textContent = i10Index;
+            document.getElementById('total-publications').textContent = 
+                SCOPUS_PUBLICATIONS; // Use manual Scopus count instead of all articles
+
+            // Update home page stats
+            const homeCitations = document.getElementById('home-citations');
+            const homePublications = document.getElementById('home-publications');
+            if (homeCitations) {
+                homeCitations.textContent = totalCitations.toLocaleString();
+            }
+            if (homePublications) {
+                homePublications.textContent = SCOPUS_PUBLICATIONS; // Use manual Scopus count
+            }
+
+            // Create citation chart
+            createCitationChart(citedBy.graph);
+
+            // Categorize and display publications
+            categorizePublications(articles);
+
+            // Update last update time
+            document.getElementById('last-update').textContent = 
+                new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+
+            // Show content, hide loading
+            document.getElementById('impact-loading').style.display = 'none';
+            document.getElementById('impact-content').style.display = 'block';
+        }
+
+        function categorizePublications(articles) {
+            const journals = [];
+            const conferences = [];
+            const preprints = [];
+
+            articles.forEach(article => {
+                const publication = article.publication || '';
+                const pubLower = publication.toLowerCase();
+                
+                // Categorize based on publication field
+                if (pubLower.includes('conference') || 
+                    pubLower.includes('proceedings') || 
+                    pubLower.includes('workshop') ||
+                    pubLower.includes('symposium') ||
+                    publication.includes('Springer') && !pubLower.includes('journal')) {
+                    conferences.push(article);
+                } else if (pubLower.includes('arxiv') || 
+                           pubLower.includes('preprint') || 
+                           pubLower.includes('ssrn') ||
+                           pubLower.includes('biorxiv')) {
+                    preprints.push(article);
+                } else if (publication.trim() !== '') {
+                    // If it has a publication field and isn't a conference/preprint, it's likely a journal
+                    journals.push(article);
+                } else {
+                    // Default to preprints if no publication info
+                    preprints.push(article);
+                }
+            });
+
+            // Render each category
+            renderPublications('journal-publications', journals, 'journal');
+            renderPublications('conference-publications', conferences, 'conference');
+            renderPublications('preprint-publications', preprints, 'preprint');
+        }
+
+        function renderPublications(containerId, articles, type) {
+            const container = document.getElementById(containerId);
+            
+            if (articles.length === 0) {
+                container.innerHTML = '<p style="color: #888; padding: 1rem; text-align: center;">No publications in this category</p>';
+                return;
+            }
+
+            let html = '';
+            articles.forEach(article => {
+                const citedByCount = article.cited_by ? article.cited_by.value : 0;
+                const citedByLink = article.cited_by ? article.cited_by.link : '#';
+                const articleLink = article.link || '#';
+                
+                html += `
+                    <div class="research-item">
+                        <h4>${article.title}</h4>
+                        <p><strong>Authors:</strong> ${article.authors || 'N/A'}</p>
+                        ${article.publication ? `<p><strong>${type === 'conference' ? 'Conference' : 'Journal'}:</strong> ${article.publication}</p>` : ''}
+                        ${citedByCount > 0 ? `<p><strong>Citations:</strong> ${citedByCount}</p>` : ''}
+                        <div class="research-links">
+                            <a href="${articleLink}" target="_blank"><i class="fas fa-external-link-alt"></i> View Publication</a>
+                            ${citedByCount > 0 ? `<a href="${citedByLink}" target="_blank"><i class="fas fa-quote-right"></i> Citations</a>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // GitHub Projects Fetching
+        const GITHUB_USERNAME = 'usufxrex';
+        const GITHUB_CACHE_KEY = 'github_repos_cache';
+        const GITHUB_CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+        
+        // ⚠️ SECURITY WARNING: Never commit this token to public repositories!
+        // To get a token: GitHub → Settings → Developer settings → Personal access tokens → Generate new token
+        // Required scope: 'repo' (for private repo access)
+        // Leave empty ('') to only show public repos
+        const GITHUB_TOKEN = ''; // Add your token here: 'ghp_yourTokenHere'
+
+        async function fetchGitHubProjects() {
+            try {
+                // Check cache first
+                const cached = localStorage.getItem(GITHUB_CACHE_KEY);
+                if (cached) {
+                    try {
+                        const { data, timestamp } = JSON.parse(cached);
+                        const age = Date.now() - timestamp;
+                        
+                        if (age < GITHUB_CACHE_DURATION) {
+                            console.log('Using cached GitHub data (age: ' + Math.floor(age / (1000 * 60 * 60)) + ' hours)');
+                            displayGitHubProjects(data);
+                            return;
+                        }
+                    } catch (cacheError) {
+                        console.warn('GitHub cache error, fetching fresh data:', cacheError);
+                        localStorage.removeItem(GITHUB_CACHE_KEY);
+                    }
+                }
+
+                // Fetch fresh data from GitHub API
+                console.log('Fetching fresh data from GitHub...');
+                
+                const headers = {};
+                if (GITHUB_TOKEN) {
+                    headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+                }
+                
+                const response = await fetch(
+                    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100&type=all`,
+                    { headers: headers }
+                );
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch GitHub repositories');
+                }
+
+                const data = await response.json();
+                
+                // Cache the data
+                localStorage.setItem(GITHUB_CACHE_KEY, JSON.stringify({
+                    data: data,
+                    timestamp: Date.now()
+                }));
+
+                displayGitHubProjects(data);
+            } catch (error) {
+                console.error('Error fetching GitHub projects:', error);
+                document.getElementById('github-projects-loading').innerHTML = 
+                    '<p style="color: #ff6b6b; padding: 1rem; text-align: center;">Failed to load projects. Please try again later.</p>';
+            }
+        }
+
+        function displayGitHubProjects(repos) {
+            // Filter out forks and sort by stars
+            const filteredRepos = repos
+                .filter(repo => !repo.fork)
+                .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                .slice(0, 20);
+
+            if (filteredRepos.length === 0) {
+                document.getElementById('github-projects-loading').innerHTML = 
+                    '<p style="color: #888; padding: 1rem; text-align: center;">No repositories found</p>';
+                return;
+            }
+
+            const container = document.getElementById('github-projects');
+            let html = '';
+
+            filteredRepos.forEach(repo => {
+                const description = repo.description || 'No description available';
+                const language = repo.language || 'N/A';
+                const stars = repo.stargazers_count || 0;
+                const forks = repo.forks_count || 0;
+                const updated = new Date(repo.updated_at).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short' 
+                });
+
+                let icon = 'fa-code';
+                const descLower = description.toLowerCase();
+                
+                if (language === 'Python' || descLower.includes('machine learning') || descLower.includes('deep learning')) {
+                    icon = 'fa-robot';
+                } else if (language === 'JavaScript' || language === 'TypeScript') {
+                    icon = 'fa-js';
+                } else if (descLower.includes('blockchain') || descLower.includes('smart contract')) {
+                    icon = 'fa-link';
+                } else if (descLower.includes('dataset') || descLower.includes('data')) {
+                    icon = 'fa-database';
+                }
+
+                html += `
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas ${icon}" style="font-size: 2rem;"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">${repo.name.replace(/_/g, ' ').replace(/-/g, ' ')}</h3>
+                            <p>${description.substring(0, 150)}${description.length > 150 ? '...' : ''}</p>
+                            <div style="display: flex; gap: 1rem; margin: 0.5rem 0; color: #888; font-size: 0.9rem;">
+                                ${language !== 'N/A' ? `<span><i class="fas fa-code"></i> ${language}</span>` : ''}
+                                ${stars > 0 ? `<span><i class="fas fa-star"></i> ${stars}</span>` : ''}
+                                ${forks > 0 ? `<span><i class="fas fa-code-branch"></i> ${forks}</span>` : ''}
+                                <span><i class="fas fa-clock"></i> ${updated}</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="${repo.html_url}" target="_blank"><i class="fab fa-github"></i> View Repository</a>
+                                ${repo.homepage ? `<a href="${repo.homepage}" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            
+            document.getElementById('github-projects-loading').style.display = 'none';
+            document.getElementById('github-projects').style.display = 'grid';
+        }
+
+        function createCitationChart(graphData) {
+            const ctx = document.getElementById('citationChart').getContext('2d');
+            
+            // Destroy existing chart if it exists
+            if (citationChart) {
+                citationChart.destroy();
+            }
+
+            const years = graphData.map(item => item.year);
+            const citations = graphData.map(item => parseInt(item.citations));
+
+            citationChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Citations per Year',
+                        data: citations,
+                        borderColor: '#ffd700',
+                        backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#ffd700',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffd700',
+                            bodyColor: '#ffffff',
+                            borderColor: '#ffd700',
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Load data when section is shown
+        document.addEventListener('DOMContentLoaded', function() {
+            // Calculate and display experience immediately
+            updateExperience();
+            
+            // Fetch scholar data for home page on load
+            fetchScholarData();
+            
+            // Fetch data immediately if research section is visible
+            const researchSection = document.getElementById('research');
+            if (researchSection && !researchSection.classList.contains('hidden')) {
+                fetchScholarData();
+            }
+
+            // Store original showSection reference
+            const originalShowSection = window.showSection;
+            
+            // Override showSection to add data loading
+            window.showSection = function(sectionId) {
+                // Call original function
+                if (originalShowSection) {
+                    originalShowSection(sectionId);
+                }
+                
+                // Load research data
+                if (sectionId === 'research' && document.getElementById('impact-content') && document.getElementById('impact-content').style.display === 'none') {
+                    fetchScholarData();
+                }
+                
+                // Load GitHub projects
+                if (sectionId === 'projects' && document.getElementById('github-projects') && document.getElementById('github-projects').style.display === 'none') {
+                    fetchGitHubProjects();
+                }
+            };
+        });
+    </script>
+</body>
+</html>
