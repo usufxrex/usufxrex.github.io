@@ -1408,7 +1408,7 @@
 
                 // Fetch fresh data using serverless function (keeps API key secure)
                 console.log('Fetching fresh data from Google Scholar...');
-                const response = await fetch('/.netlify/functions/scholar');
+                const response = await fetch('/api/scholar');
                 
                 if (!response.ok) {
                     throw new Error('Failed to fetch data from SerpApi');
